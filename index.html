@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VC Programador | Da teoria da faculdade ao primeiro projeto real</title>
+    <meta
+      name="description"
+      content="Formação prática de 12 semanas para alunos de TI e iniciantes saírem da teoria, construírem projetos reais, organizarem o GitHub e criarem um portfólio."
+    />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237c5cfc'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' fill='white' font-size='14' font-weight='900' font-family='sans-serif'>VC</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* =======================
+         CONFIGURACAO RAPIDA
+      ======================== */
+      :root {
+        --bg-main: #0f0f1a;
+        --bg-card: #1a1a2e;
+        --bg-alt: #111120;
+        --accent: #6c63ff;
+        --accent-2: #00d4aa;
+        --text-main: #f0f0f0;
+        --text-muted: #a0a0b0;
+        --border: rgba(108, 99, 255, 0.2);
+        --hero-gradient: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+        --cta-gradient: linear-gradient(135deg, #6c63ff, #8b5cf6);
+        --success-gradient: linear-gradient(135deg, rgba(0, 212, 170, 0.18), rgba(108, 99, 255, 0.18));
+        --shadow-soft: 0 18px 45px rgba(6, 8, 20, 0.34);
+        --shadow-glow: 0 12px 40px rgba(108, 99, 255, 0.28);
+        --radius: 12px;
+        --container: 1100px;
+        --header-height: 76px;
+      }
+
+      /* =======================
+         RESET
+      ======================== */
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-main);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .container {
+        width: min(calc(100% - 2rem), var(--container));
+        margin: 0 auto;
+      }
+
+      .section {
+        position: relative;
+        padding: 48px 0;
+      }
+
+      .section-alt {
+        background: var(--bg-alt);
+      }
+
+      .section-head {
+        max-width: 740px;
+        margin-bottom: 2rem;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem 0.9rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgba(108, 99, 255, 0.12);
+        color: #c8c5ff;
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.08;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      h2 {
+        font-size: clamp(1.55rem, 3vw, 2.2rem);
+        line-height: 1.15;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      h3 {
+        font-size: 1.05rem;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+
+      p,
+      li,
+      label,
+      input,
+      select {
+        font-size: 1rem;
+      }
+
+      .muted {
+        color: var(--text-muted);
+      }
+
+      .accent {
+        color: var(--accent-2);
+      }
+
+      .grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .card {
+        position: relative;
+        padding: 1.3rem;
+        background: linear-gradient(180deg, rgba(26, 26, 46, 0.98), rgba(18, 18, 35, 0.98));
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(108, 99, 255, 0.45);
+        box-shadow: 0 18px 50px rgba(108, 99, 255, 0.16);
+      }
+
+      .card-icon {
+        display: inline-grid;
+        place-items: center;
+        width: 2.8rem;
+        height: 2.8rem;
+        margin-bottom: 1rem;
+        border-radius: 0.9rem;
+        background: rgba(108, 99, 255, 0.15);
+        color: #d4d1ff;
+      }
+
+      .card p + p,
+      .card h3 + p {
+        margin-top: 0.45rem;
+      }
+
+      .cta-primary,
+      .cta-secondary,
+      .submit-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        min-height: 56px;
+        padding: 1rem 1.6rem;
+        border: 0;
+        border-radius: 8px;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      }
+
+      .cta-primary,
+      .submit-btn {
+        background: var(--cta-gradient);
+        color: #fff;
+        box-shadow: var(--shadow-glow);
+      }
+
+      .cta-primary:hover,
+      .submit-btn:hover {
+        transform: scale(1.02);
+        box-shadow: 0 18px 48px rgba(108, 99, 255, 0.4);
+      }
+
+      .cta-secondary {
+        color: var(--text-main);
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .cta-secondary:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin-top: 1.6rem;
+      }
+
+      .stat-card {
+        padding: 1rem;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .stat-card strong {
+        display: block;
+        font-size: clamp(1.7rem, 4vw, 2.4rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+
+      .stat-card span {
+        color: var(--text-muted);
+        font-size: 0.92rem;
+      }
+
+      /* =======================
+         HEADER
+      ======================== */
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        transition: background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease;
+      }
+
+      .site-header.scrolled {
+        background: rgba(10, 10, 19, 0.82);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: var(--header-height);
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .brand-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 7px;
+        background: #7c5cfc;
+        color: #ffffff;
+        font-size: 0.85rem;
+        font-weight: 900;
+        letter-spacing: -0.08em;
+      }
+
+      .brand-copy {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+
+      .brand-title {
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .brand-title .brand-vc {
+        color: #a78bfa;
+      }
+
+      .brand-tagline {
+        margin-top: 0.2rem;
+        color: #71717a;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: none;
+        align-items: center;
+        gap: 1.2rem;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--text-main);
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        color: var(--text-main);
+      }
+
+      .nav-panel {
+        display: none;
+        padding: 0 0 1rem;
+      }
+
+      .nav-panel.open {
+        display: block;
+      }
+
+      .nav-panel-inner {
+        display: grid;
+        gap: 0.65rem;
+        padding: 1rem;
+        background: rgba(14, 14, 24, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+      }
+
+      .nav-panel-inner a,
+      .nav-panel-inner button {
+        padding: 0.75rem 0.9rem;
+        border-radius: 10px;
+      }
+
+      /* =======================
+         HERO
+      ======================== */
+      .hero {
+        overflow: hidden;
+        min-height: 100svh;
+        padding-top: calc(var(--header-height) + 32px);
+        background:
+          radial-gradient(circle at top right, rgba(0, 212, 170, 0.12), transparent 32%),
+          radial-gradient(circle at left center, rgba(108, 99, 255, 0.18), transparent 38%),
+          var(--hero-gradient);
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-copy p {
+        margin-top: 1.15rem;
+        max-width: 680px;
+        color: #cbccda;
+        font-size: clamp(1rem, 2vw, 1.1rem);
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 1.8rem;
+      }
+
+      .hero-card {
+        position: relative;
+        padding: 1.25rem;
+        background:
+          linear-gradient(180deg, rgba(30, 30, 54, 0.9), rgba(15, 15, 29, 0.96)),
+          rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(108, 99, 255, 0.26);
+        border-radius: 20px;
+        box-shadow: 0 24px 60px rgba(4, 6, 18, 0.45);
+        overflow: hidden;
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: auto -30% -50% auto;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle, rgba(0, 212, 170, 0.15), transparent 70%);
+      }
+
+      .hero-window {
+        overflow: hidden;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #0a0c17;
+      }
+
+      .hero-window-top {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .hero-window-dot {
+        width: 0.72rem;
+        height: 0.72rem;
+        border-radius: 50%;
+      }
+
+      .hero-window-dot.red {
+        background: #ff5f56;
+      }
+
+      .hero-window-dot.yellow {
+        background: #ffbd2e;
+      }
+
+      .hero-window-dot.green {
+        background: #27c93f;
+      }
+
+      .hero-code {
+        padding: 1.15rem 1rem 1.2rem;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: #dce0ff;
+      }
+
+      .hero-code .line {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .hero-code .num {
+        min-width: 1.3rem;
+        color: #57607f;
+        user-select: none;
+      }
+
+      .hero-code .kw {
+        color: #8b83ff;
+      }
+
+      .hero-code .fn {
+        color: #5de7c8;
+      }
+
+      .hero-code .str {
+        color: #ffd479;
+      }
+
+      .code-float {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.05);
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-weight: 700;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .code-a {
+        top: 15%;
+        right: 8%;
+        font-size: clamp(2.4rem, 6vw, 5rem);
+      }
+
+      .code-b {
+        bottom: 12%;
+        left: 4%;
+        font-size: clamp(2rem, 5vw, 4rem);
+      }
+
+      .code-c {
+        top: 42%;
+        left: 50%;
+        font-size: clamp(1.6rem, 4vw, 2.8rem);
+      }
+
+      /* =======================
+         LISTS / GRIDS
+      ======================== */
+      .pain-grid,
+      .bonus-grid,
+      .audience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pain-card {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .pain-card .card-icon {
+        flex: 0 0 auto;
+        margin-bottom: 0;
+      }
+
+      .section-closure {
+        max-width: 760px;
+        margin-top: 1.4rem;
+        padding-left: 1rem;
+        border-left: 3px solid rgba(0, 212, 170, 0.45);
+        color: #d8e4ea;
+      }
+
+      .highlight-row {
+        display: grid;
+        gap: 0.85rem;
+        margin-top: 1.6rem;
+      }
+
+      .highlight-item {
+        display: flex;
+        gap: 0.85rem;
+        align-items: center;
+        padding: 0.95rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .highlight-item svg {
+        flex: 0 0 auto;
+        color: var(--accent-2);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card .project-number,
+      .bonus-card .project-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2rem;
+        height: 2rem;
+        margin-bottom: 1rem;
+        padding: 0 0.7rem;
+        border-radius: 999px;
+        background: rgba(108, 99, 255, 0.16);
+        color: #d9d7ff;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .method-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .method-step {
+        display: grid;
+        gap: 0.75rem;
+        padding: 1.35rem;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(24, 24, 44, 0.95), rgba(16, 16, 29, 0.98));
+      }
+
+      .method-letter {
+        display: inline-grid;
+        place-items: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        background: rgba(0, 212, 170, 0.12);
+        color: #baf7e7;
+        font-size: 1.5rem;
+        font-weight: 800;
+      }
+
+      /* =======================
+         TIMELINE / ACCORDION
+      ======================== */
+      .timeline {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .accordion-item {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(25, 25, 46, 0.98), rgba(15, 15, 29, 0.98));
+        overflow: hidden;
+      }
+
+      .accordion-trigger {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem;
+        background: transparent;
+        border: 0;
+        color: var(--text-main);
+        text-align: left;
+      }
+
+      .week-badge {
+        display: inline-grid;
+        place-items: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        background: rgba(108, 99, 255, 0.18);
+        color: #e0deff;
+        font-weight: 800;
+      }
+
+      .accordion-title strong {
+        display: block;
+      }
+
+      .accordion-title span {
+        color: var(--text-muted);
+        font-size: 0.94rem;
+      }
+
+      .accordion-chevron {
+        transition: transform 0.2s ease;
+        color: var(--accent-2);
+      }
+
+      .accordion-item.open .accordion-chevron {
+        transform: rotate(180deg);
+      }
+
+      .accordion-panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.28s ease;
+      }
+
+      .accordion-panel-inner {
+        padding: 0 1rem 1rem 5rem;
+        color: #d8dbe9;
+      }
+
+      .accordion-panel-inner strong {
+        color: var(--accent-2);
+      }
+
+      /* =======================
+         GUARANTEE / OFFER
+      ======================== */
+      .guarantee-box,
+      .offer-box,
+      .form-shell,
+      .success-card {
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(26, 26, 46, 0.98), rgba(12, 12, 23, 0.98));
+        box-shadow: var(--shadow-soft);
+      }
+
+      .guarantee-box {
+        display: grid;
+        gap: 1.25rem;
+        padding: 1.5rem;
+      }
+
+      .shield {
+        display: inline-grid;
+        place-items: center;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1.4rem;
+        background: rgba(0, 212, 170, 0.12);
+        color: #a7f2dd;
+      }
+
+      .offer-box {
+        padding: 2rem;
+        border-color: #2a2a3d;
+        background: #13131f;
+        border-radius: 16px;
+      }
+
+      .offer-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(124, 92, 252, 0.14);
+        border: 1px solid rgba(124, 92, 252, 0.24);
+        color: #c7baff;
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .offer-subtitle {
+        max-width: 720px;
+        color: #8f94aa;
+      }
+
+      .price-stack {
+        display: grid;
+        gap: 0.7rem;
+        margin: 1.2rem 0 1.35rem;
+      }
+
+      .price-label {
+        color: #9fa3b8;
+        font-size: 0.96rem;
+      }
+
+      .price-current {
+        font-size: clamp(3.25rem, 8vw, 4.25rem);
+        line-height: 0.95;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+      }
+
+      .price-old {
+        color: #8d92a8;
+        text-decoration: line-through;
+        font-size: 1rem;
+      }
+
+      .saving-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        width: fit-content;
+        padding: 0.65rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(0, 212, 170, 0.12);
+        border: 1px solid rgba(0, 212, 170, 0.18);
+        color: #8ef0d5;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .installment-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.05rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #1a1a2e;
+        margin-bottom: 1.35rem;
+      }
+
+      .installment-copy {
+        display: grid;
+        gap: 0.2rem;
+      }
+
+      .installment-copy span {
+        color: #9fa3b8;
+        font-size: 12px;
+      }
+
+      .installment-copy strong {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: #ffffff;
+      }
+
+      .installment-icon {
+        display: inline-grid;
+        place-items: center;
+        width: 2.8rem;
+        height: 2.8rem;
+        border-radius: 0.9rem;
+        background: rgba(124, 92, 252, 0.12);
+        color: #c9bdff;
+        flex: 0 0 auto;
+      }
+
+      .check-list {
+        display: grid;
+        gap: 0.9rem 1.1rem;
+        margin: 1.35rem 0 1.6rem;
+        padding: 0;
+      }
+
+      .offer-box .check-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .check-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        list-style: none;
+        color: #e7e8f2;
+        min-width: 0;
+      }
+
+      .check-list li::before {
+        content: "✓";
+        display: inline-grid;
+        place-items: center;
+        min-width: 1.35rem;
+        height: 1.35rem;
+        margin-top: 0.1rem;
+        border-radius: 50%;
+        background: rgba(0, 212, 170, 0.16);
+        color: var(--accent-2);
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      .offer-cta {
+        width: 100%;
+        margin-top: 0.2rem;
+        background: linear-gradient(135deg, #7c5cfc, #a070ff);
+        text-transform: none;
+      }
+
+      .offer-actions {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .offer-secondary {
+        width: 100%;
+        min-height: 52px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
+      }
+
+      .offer-urgency {
+        margin-top: 0.95rem;
+        color: #8f94aa;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .offer-urgency::before {
+        content: "●";
+        color: #ff5a67;
+        margin-right: 0.45rem;
+      }
+
+      .guarantee-mini {
+        display: flex;
+        gap: 0.9rem;
+        align-items: flex-start;
+        margin-top: 1.2rem;
+        padding: 1rem 1.05rem;
+        border-radius: 14px;
+        border: 1px solid rgba(76, 175, 80, 0.22);
+        background: #0f1f16;
+      }
+
+      .guarantee-mini-icon {
+        font-size: 1.4rem;
+        line-height: 1;
+        flex: 0 0 auto;
+      }
+
+      .guarantee-mini strong {
+        display: block;
+        margin-bottom: 0.2rem;
+        color: #78e39d;
+      }
+
+      .guarantee-mini p {
+        color: #aeb7c5;
+        font-size: 0.94rem;
+      }
+
+      /* =======================
+         FORM
+      ======================== */
+      .form-wrap {
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .countdown-box {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.1rem;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 212, 170, 0.25);
+        background: rgba(0, 212, 170, 0.08);
+      }
+
+      .countdown-box.active {
+        display: flex;
+      }
+
+      .countdown-time {
+        display: flex;
+        gap: 0.8rem;
+        font-weight: 800;
+      }
+
+      .countdown-time span {
+        display: grid;
+        place-items: center;
+        min-width: 4rem;
+        padding: 0.7rem 0.9rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .form-shell {
+        padding: 1.5rem;
+      }
+
+      form {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .field label,
+      .checkbox {
+        color: #e6e7f1;
+        font-weight: 600;
+      }
+
+      .field input,
+      .field select {
+        width: 100%;
+        min-height: 54px;
+        padding: 0.9rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text-main);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .field input::placeholder {
+        color: #7d8197;
+      }
+
+      .field input:focus,
+      .field select:focus {
+        outline: 0;
+        border-color: rgba(108, 99, 255, 0.7);
+        box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.12);
+      }
+
+      .field.invalid input,
+      .field.invalid select {
+        border-color: rgba(255, 110, 110, 0.7);
+      }
+
+      .error-message {
+        min-height: 1.1rem;
+        color: #ff9d9d;
+        font-size: 0.87rem;
+      }
+
+      .checkbox-wrap {
+        display: flex;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .checkbox-wrap input {
+        width: 1.1rem;
+        height: 1.1rem;
+        margin-top: 0.2rem;
+        accent-color: var(--accent);
+      }
+
+      .success-card {
+        display: none;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: var(--success-gradient);
+      }
+
+      .success-card.show {
+        display: grid;
+      }
+
+      .success-icon {
+        display: inline-grid;
+        place-items: center;
+        width: 3.8rem;
+        height: 3.8rem;
+        border-radius: 1.25rem;
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .success-card .cta-secondary {
+        width: fit-content;
+        min-height: 48px;
+        margin-top: 0.4rem;
+      }
+
+      /* =======================
+         FOOTER / FLOAT
+      ======================== */
+      .footer {
+        padding: 2rem 0 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #0c0c14;
+      }
+
+      .footer-inner {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+
+      .footer-brand img {
+        width: 54px;
+        height: 54px;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+
+      .footer-brand-copy {
+        display: grid;
+        gap: 0.15rem;
+      }
+
+      .footer-brand-copy small {
+        color: var(--accent-2);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        color: var(--text-muted);
+      }
+
+      .footer-links a:hover {
+        color: var(--text-main);
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 45;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #00d4aa, #08b38e);
+        color: #032821;
+        box-shadow: 0 18px 40px rgba(0, 212, 170, 0.28);
+      }
+
+      .whatsapp-float:hover {
+        transform: translateY(-2px);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* =======================
+         RESPONSIVO
+      ======================== */
+      @media (min-width: 768px) {
+        .section {
+          padding: 80px 0;
+        }
+
+        .brand-tagline {
+          display: block;
+        }
+
+        .nav-links {
+          display: flex;
+        }
+
+        .nav-toggle,
+        .nav-panel {
+          display: none !important;
+        }
+
+        .hero-grid {
+          grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+          gap: 2.5rem;
+        }
+
+        .pain-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .projects-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .projects-grid .project-card:last-child {
+          grid-column: span 2;
+        }
+
+        .method-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .highlight-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .bonus-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .audience-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .guarantee-box {
+          grid-template-columns: auto 1fr;
+          align-items: center;
+        }
+
+        .form-wrap {
+          grid-template-columns: 1fr 1.02fr;
+          align-items: start;
+        }
+
+        .footer-inner {
+          grid-template-columns: 1fr auto;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .brand-tagline {
+          display: none;
+        }
+
+        .offer-box .check-list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .projects-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .projects-grid .project-card:nth-child(4),
+        .projects-grid .project-card:nth-child(5) {
+          grid-column: span 1;
+        }
+
+        .projects-grid .project-card:last-child {
+          grid-column: auto;
+        }
+
+        .bonus-grid {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- =======================
+         HEADER
+    ======================== -->
+    <header class="site-header" id="topo">
+      <div class="container">
+        <nav class="nav" aria-label="Principal">
+          <a class="brand" href="#topo" aria-label="Ir para o topo da página">
+            <span class="brand-badge" aria-hidden="true">VC</span>
+            <span class="brand-copy">
+              <span class="brand-title"><span class="brand-vc">VC</span> Programador</span>
+              <span class="brand-tagline">Da teoria ao seu primeiro projeto real</span>
+            </span>
+          </a>
+          <div class="nav-links">
+            <a href="#projetos">Projetos</a>
+            <a href="#metodo">Método</a>
+            <a href="#oferta">Oferta</a>
+            <a id="navBuyCta" href="#inscricao" class="cta-primary" style="min-height: 46px; padding: 0.8rem 1.1rem;">Comprar agora</a>
+          </div>
+          <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navPanel" aria-label="Abrir menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </button>
+        </nav>
+        <div class="nav-panel" id="navPanel">
+          <div class="nav-panel-inner">
+            <a href="#projetos">Projetos</a>
+            <a href="#metodo">Método</a>
+            <a href="#oferta">Oferta</a>
+            <a id="navBuyCtaMobile" href="#inscricao" class="cta-primary">Comprar agora</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- =======================
+           HERO
+      ======================== -->
+      <section class="section hero">
+        <span class="code-float code-a">{ }</span>
+        <span class="code-float code-b">&lt;/&gt;</span>
+        <span class="code-float code-c">function()</span>
+        <div class="container hero-grid">
+          <div class="hero-copy fade-in">
+            <div class="eyebrow">Turma Fundadora — Vagas Limitadas</div>
+            <h1>Você faz faculdade de TI, mas ainda não consegue construir um projeto sozinho?</h1>
+            <p>
+              O VC Programador é uma formação prática de 12 semanas para tirar você da teoria e levar até seus
+              primeiros projetos reais — com GitHub organizado e portfólio pronto para mostrar.
+            </p>
+            <div class="hero-cta">
+              <a id="heroBuyCta" class="cta-primary" href="#inscricao">QUERO GARANTIR MINHA VAGA</a>
+              <a id="heroWhatsappCta" class="cta-secondary" href="#inscricao">Tirar dúvidas no WhatsApp</a>
+            </div>
+            <div class="stats">
+              <div class="stat-card">
+                <strong data-counter="12">0</strong>
+                <span>semanas de formação prática</span>
+              </div>
+              <div class="stat-card">
+                <strong data-counter="5">0</strong>
+                <span>projetos para portfólio</span>
+              </div>
+              <div class="stat-card">
+                <strong data-counter="5">0</strong>
+                <span>bônus da turma fundadora</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card fade-in">
+            <div class="hero-window" aria-label="Prévia visual de código do curso">
+              <div class="hero-window-top">
+                <span class="hero-window-dot red"></span>
+                <span class="hero-window-dot yellow"></span>
+                <span class="hero-window-dot green"></span>
+              </div>
+              <div class="hero-code">
+                <div class="line"><span class="num">1</span><span><span class="kw">const</span> portfolio = <span class="str">"vazio"</span>;</span></div>
+                <div class="line"><span class="num">2</span><span><span class="kw">const</span> github = <span class="str">"desorganizado"</span>;</span></div>
+                <div class="line"><span class="num">3</span><span><span class="kw">const</span> projetoReal = <span class="kw">false</span>;</span></div>
+                <div class="line"><span class="num">4</span><span></span></div>
+                <div class="line"><span class="num">5</span><span><span class="kw">function</span> <span class="fn">virarProgramador</span>() &#123;</span></div>
+                <div class="line"><span class="num">6</span><span>&nbsp;&nbsp;<span class="kw">return</span> <span class="str">"construir, publicar e apresentar"</span>;</span></div>
+                <div class="line"><span class="num">7</span><span>&#125;</span></div>
+                <div class="line"><span class="num">8</span><span></span></div>
+                <div class="line"><span class="num">9</span><span><span class="fn">virarProgramador</span>();</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           DOR
+      ======================== -->
+      <section class="section section-alt" id="dor">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">A lacuna prática</div>
+            <h2>Você se identifica com algum desses?</h2>
+          </div>
+          <div class="grid pain-grid">
+            <article class="card pain-card fade-in">
+              <div class="card-icon">⚠️</div>
+              <p>Vejo muita teoria na faculdade, mas não consigo construir nada sozinho</p>
+            </article>
+            <article class="card pain-card fade-in">
+              <div class="card-icon">🐙</div>
+              <p>Meu GitHub está vazio ou com projetos de exercício</p>
+            </article>
+            <article class="card pain-card fade-in">
+              <div class="card-icon">🧩</div>
+              <p>Não sei juntar HTML, Python, banco de dados e lógica num projeto real</p>
+            </article>
+            <article class="card pain-card fade-in">
+              <div class="card-icon">🛠️</div>
+              <p>Sinto que sei a sintaxe, mas não sei resolver problemas reais</p>
+            </article>
+            <article class="card pain-card fade-in">
+              <div class="card-icon">🚀</div>
+              <p>Nunca publiquei nada online</p>
+            </article>
+            <article class="card pain-card fade-in">
+              <div class="card-icon">💼</div>
+              <p>Não tenho portfólio para mostrar em entrevista ou estágio</p>
+            </article>
+          </div>
+          <p class="section-closure fade-in">
+            O problema não é falta de capacidade. É falta de trilha prática, projetos reais e acompanhamento.
+          </p>
+        </div>
+      </section>
+
+      <!-- =======================
+           SOLUCAO
+      ======================== -->
+      <section class="section" id="solucao">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">A ponte para o mercado</div>
+            <h2>A faculdade ensina os fundamentos. O VC Programador coloca você para construir.</h2>
+            <p class="muted">
+              Aqui a teoria vira entrega real. Você aprende com direção, executa com acompanhamento e termina com
+              projetos publicados, GitHub organizado e argumentos concretos para entrevistas.
+            </p>
+          </div>
+          <div class="highlight-row">
+            <div class="highlight-item fade-in">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6V12L16 14M22 12C22 17.523 17.523 22 12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12Z" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span>12 semanas de formação prática</span>
+            </div>
+            <div class="highlight-item fade-in">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M19 5H8M19 5V16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Projetos reais desde a primeira semana</span>
+            </div>
+            <div class="highlight-item fade-in">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 11L12 14L22 4M21 12V19C21 20.105 20.105 21 19 21H5C3.895 21 3 20.105 3 19V5C3 3.895 3.895 3 5 3H16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Checkpoints semanais de entrega</span>
+            </div>
+            <div class="highlight-item fade-in">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3L20 7V17L12 21L4 17V7L12 3ZM12 3V21M4 7L12 11L20 7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span>Método C.A.P.A. (Compreender, Aplicar, Publicar, Apresentar)</span>
+            </div>
+            <div class="highlight-item fade-in">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19C4 20.5 4 16.5 2 16M22 16V20C22 20.53 21.789 21.039 21.414 21.414C21.039 21.789 20.53 22 20 22H15C14.47 22 13.961 21.789 13.586 21.414C13.211 21.039 13 20.53 13 20V16C13 15.47 13.211 14.961 13.586 14.586C13.961 14.211 14.47 14 15 14H20C20.53 14 21.039 14.211 21.414 14.586C21.789 14.961 22 15.47 22 16ZM15 5.13C15 4.337 14.685 3.576 14.125 3.015C13.564 2.455 12.803 2.14 12.01 2.14C11.217 2.14 10.456 2.455 9.895 3.015C9.335 3.576 9.02 4.337 9.02 5.13C9.02 8.62 7.53 9.78 7.53 9.78C7.53 9.78 6.04 10.94 6.04 14.43V15.92C6.04 16.712 6.355 17.473 6.915 18.034C7.476 18.594 8.237 18.909 9.03 18.909H9.99" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>GitHub organizado e portfólio final</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           PROJETOS
+      ======================== -->
+      <section class="section section-alt" id="projetos">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">Entrega real</div>
+            <h2>Você não vai apenas assistir aulas. Você vai entregar.</h2>
+          </div>
+          <div class="grid projects-grid">
+            <article class="card project-card fade-in">
+              <div class="project-number">01</div>
+              <h3>Landing Page Profissional</h3>
+              <p class="muted">Sua primeira página publicada na internet</p>
+            </article>
+            <article class="card project-card fade-in">
+              <div class="project-number">02</div>
+              <h3>Dashboard com Dados Reais</h3>
+              <p class="muted">Interface dinâmica consumindo APIs</p>
+            </article>
+            <article class="card project-card fade-in">
+              <div class="project-number">03</div>
+              <h3>Sistema em Python com Banco de Dados</h3>
+              <p class="muted">CRUD completo com Streamlit e SQLite</p>
+            </article>
+            <article class="card project-card fade-in">
+              <div class="project-number">04</div>
+              <h3>Automação Inteligente com n8n e IA</h3>
+              <p class="muted">Workflow real recebendo dados e enviando notificações automáticas</p>
+            </article>
+            <article class="card project-card fade-in">
+              <div class="project-number">05</div>
+              <h3>Portfólio no GitHub</h3>
+              <p class="muted">Projetos documentados, organizados e prontos para mostrar</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           METODO
+      ======================== -->
+      <section class="section" id="metodo">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">Método C.A.P.A.</div>
+            <h2>A metodologia do VC Programador</h2>
+          </div>
+          <div class="method-grid">
+            <article class="method-step fade-in">
+              <span class="method-letter">C</span>
+              <h3>Compreender</h3>
+              <p class="muted">O aluno entende o conceito sem excesso de teoria</p>
+            </article>
+            <article class="method-step fade-in">
+              <span class="method-letter">A</span>
+              <h3>Aplicar</h3>
+              <p class="muted">O aluno executa junto com o professor</p>
+            </article>
+            <article class="method-step fade-in">
+              <span class="method-letter">P</span>
+              <h3>Publicar</h3>
+              <p class="muted">O projeto vai para GitHub, Vercel ou Streamlit Cloud</p>
+            </article>
+            <article class="method-step fade-in">
+              <span class="method-letter">A</span>
+              <h3>Apresentar</h3>
+              <p class="muted">O aluno aprende a explicar o que construiu</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           GRADE 12 SEMANAS
+      ======================== -->
+      <section class="section section-alt" id="grade">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">12 semanas</div>
+            <h2>O que acontece semana a semana</h2>
+          </div>
+          <div class="timeline" id="timeline">
+            <article class="accordion-item open fade-in">
+              <button class="accordion-trigger" aria-expanded="true">
+                <span class="week-badge">01</span>
+                <span class="accordion-title">
+                  <strong>Mentalidade, ambiente e GitHub</strong>
+                  <span>Entrega: setup completo do ambiente e primeiro repositório organizado</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel" style="max-height: 160px;">
+                <div class="accordion-panel-inner">
+                  Você entra no jogo do jeito certo: ambiente ajustado, rotina de versionamento e <strong>GitHub pronto para crescer</strong>.
+                </div>
+              </div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">02</span>
+                <span class="accordion-title">
+                  <strong>HTML aplicado ao projeto real</strong>
+                  <span>Entrega: estrutura da landing page publicada localmente</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você aprende HTML com contexto de produto e já monta a base do seu primeiro projeto visual.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">03</span>
+                <span class="accordion-title">
+                  <strong>CSS moderno e responsividade</strong>
+                  <span>Entrega: interface responsiva pronta para mobile e desktop</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Aqui o layout deixa de parecer exercício e começa a parecer produto de verdade, com responsividade e acabamento.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">04</span>
+                <span class="accordion-title">
+                  <strong>JavaScript essencial</strong>
+                  <span>Entrega: interações práticas funcionando na página</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você conecta comportamento à interface e sai da tela estática para resolver interações reais do usuário.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">05</span>
+                <span class="accordion-title">
+                  <strong>JavaScript com dados, JSON e APIs</strong>
+                  <span>Entrega: dashboard consumindo dados externos</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você entende como buscar, tratar e exibir dados do mundo real dentro de uma interface útil.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">06</span>
+                <span class="accordion-title">
+                  <strong>Ponte JavaScript → Python</strong>
+                  <span>Entrega: visão clara de fluxo entre front e back</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você deixa de ver linguagens isoladas e começa a pensar em arquitetura e integração entre camadas.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">07</span>
+                <span class="accordion-title">
+                  <strong>Python com arquivos e banco de dados</strong>
+                  <span>Entrega: lógica persistindo dados de forma real</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você constrói a base de um sistema funcional com persistência e domínio sobre operações de dados.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">08</span>
+                <span class="accordion-title">
+                  <strong>Sistema visual com Streamlit</strong>
+                  <span>Entrega: aplicação CRUD visual rodando</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você transforma lógica em produto navegável, com interface funcional e operação completa de cadastro.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">09</span>
+                <span class="accordion-title">
+                  <strong>APIs e integração entre sistemas</strong>
+                  <span>Entrega: aplicação conectando serviços externos</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você aprende a fazer sistemas conversarem entre si e cria repertório para projetos mais próximos do mercado.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">10</span>
+                <span class="accordion-title">
+                  <strong>Automação com n8n</strong>
+                  <span>Entrega: workflow automatizado com gatilhos e ações</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você começa a montar automações úteis e enxerga como código, APIs e processos se conectam no dia a dia.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">11</span>
+                <span class="accordion-title">
+                  <strong>Automação com IA</strong>
+                  <span>Entrega: fluxo com inteligência aplicada a um caso real</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você usa IA como ferramenta de produção e automatização, sem cair na armadilha de depender dela sem entender o processo.</div></div>
+            </article>
+            <article class="accordion-item fade-in">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span class="week-badge">12</span>
+                <span class="accordion-title">
+                  <strong>Portfólio, apresentação e Demo Day</strong>
+                  <span>Entrega: portfólio final com narrativa para estágio e entrevistas</span>
+                </span>
+                <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="accordion-panel"><div class="accordion-panel-inner">Você fecha o ciclo com material para mostrar, discurso para defender o que construiu e confiança para se posicionar.</div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           BONUS
+      ======================== -->
+      <section class="section" id="bonus">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">Turma fundadora</div>
+            <h2>Bônus inclusos na Turma Fundadora</h2>
+          </div>
+          <div class="grid bonus-grid">
+            <article class="card bonus-card fade-in">
+              <div class="project-number">B1</div>
+              <h3>README que Contrata</h3>
+              <p class="muted">Templates de documentação para GitHub que recrutadores realmente abrem</p>
+            </article>
+            <article class="card bonus-card fade-in">
+              <div class="project-number">B2</div>
+              <h3>Prompt Sheet do Programador</h3>
+              <p class="muted">20 prompts prontos para usar IA no dia a dia do código</p>
+            </article>
+            <article class="card bonus-card fade-in">
+              <div class="project-number">B3</div>
+              <h3>Cursor e VS Code com IA na Prática</h3>
+              <p class="muted">Como usar IA como parceira de programação, sem virar copiador de código</p>
+            </article>
+            <article class="card bonus-card fade-in">
+              <div class="project-number">B4</div>
+              <h3>Primeiro Freelancer Simples</h3>
+              <p class="muted">Como oferecer e precificar seus primeiros serviços como programador</p>
+            </article>
+            <article class="card bonus-card fade-in">
+              <div class="project-number">B5</div>
+              <h3>Mini Introdução ao Mobile com React Native/Expo</h3>
+              <p class="muted">Seu primeiro app, depois que o portfólio estiver pronto</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           PUBLICO
+      ======================== -->
+      <section class="section section-alt" id="publico">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">Perfil ideal</div>
+            <h2>O VC Programador é para você se...</h2>
+          </div>
+          <div class="grid audience-grid">
+            <article class="card fade-in">
+              <h3>Aluno de TI travado</h3>
+              <p class="muted">
+                Você cursa ADS, Sistemas, Ciência da Computação ou curso técnico, mas ainda não sabe construir
+                projetos sozinho
+              </p>
+            </article>
+            <article class="card fade-in">
+              <h3>Iniciante que quer entrar na área</h3>
+              <p class="muted">
+                Você quer começar em tecnologia com uma trilha prática, orientada e objetiva
+              </p>
+            </article>
+            <article class="card fade-in">
+              <h3>Aluno sem portfólio</h3>
+              <p class="muted">
+                Você já viu programação, mas não tem GitHub, projetos publicados ou segurança para se apresentar
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           GARANTIA
+      ======================== -->
+      <section class="section" id="garantia">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">Confiança pedagógica</div>
+            <h2>Nossa garantia pedagógica</h2>
+          </div>
+          <div class="guarantee-box fade-in">
+            <div class="shield" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3L19 6V11C19 16 15.5 20 12 21C8.5 20 5 16 5 11V6L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9.5 11.5L11.2 13.2L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p>
+              Se você assistir às aulas, entregar os desafios e participar dos checkpoints, você sairá com seus
+              primeiros projetos publicados, GitHub organizado e portfólio inicial para apresentar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           OFERTA
+      ======================== -->
+      <section class="section section-alt" id="oferta">
+        <div class="container">
+          <div class="section-head fade-in">
+            <div class="eyebrow">🎯 Turma Fundadora — Vagas limitadas</div>
+            <h2>Entre agora com o valor especial de lançamento</h2>
+            <p class="offer-subtitle">Preço de fundador válido apenas para os primeiros inscritos. Depois sobe.</p>
+          </div>
+          <div class="offer-box fade-in">
+            <div class="offer-badge">🚀 Turma Fundadora</div>
+            <div class="price-stack">
+              <span class="price-old">De R$ 1.497</span>
+              <span class="price-label">Valor à vista (pix)</span>
+              <strong class="price-current">R$ 799</strong>
+              <div class="saving-badge">✓ Você economiza R$ 698 — 47% off</div>
+            </div>
+            <div class="installment-card" aria-label="Parcelamento no cartão">
+              <div class="installment-copy">
+                <span>Ou parcelado em até 12x no cartão</span>
+                <strong>12x de R$ 80,00</strong>
+              </div>
+              <div class="installment-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M3 10H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <ul class="check-list">
+              <li>12 semanas práticas</li>
+              <li>Aulas ao vivo</li>
+              <li>Checkpoints semanais</li>
+              <li>Projeto Vitrine</li>
+              <li>Suporte em grupo</li>
+              <li>Portfólio no GitHub</li>
+              <li>Certificado</li>
+              <li>5 bônus exclusivos</li>
+            </ul>
+            <div class="offer-actions">
+              <a id="offerBuyCta" class="cta-primary offer-cta" href="#inscricao">Garantir minha vaga na Turma Fundadora →</a>
+            </div>
+            <p class="offer-urgency">Vagas limitadas · Preço especial só para os primeiros inscritos</p>
+            <div class="guarantee-mini">
+              <div class="guarantee-mini-icon" aria-hidden="true">🛡️</div>
+              <div>
+                <strong>Satisfação garantida por 7 dias</strong>
+                <p>Se nas primeiras aulas você sentir que não é para você, devolvemos 100% do valor. Sem burocracia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           FORMULARIO
+      ======================== -->
+      <section class="section" id="inscricao">
+        <div class="container">
+          <div class="form-wrap">
+            <div class="section-head fade-in">
+              <div class="eyebrow">Dúvidas? Fale no WhatsApp!</div>
+              <h2>💬 Ainda tenho dúvidas</h2>
+              <p class="muted">Ainda tem dúvidas? Clique em “Quero receber atendimento” e fale agora com nossa equipe de vendas pelo WhatsApp para receber suporte personalizado e garantir sua vaga.</p>
+            </div>
+            <div class="fade-in">
+              <div class="countdown-box" id="countdownBox" aria-live="polite">
+                <div>
+                  <strong>Oferta expira em breve</strong>
+                  <p class="muted">Contagem regressiva da Turma Fundadora</p>
+                </div>
+                <div class="countdown-time" id="countdownTime">
+                  <span>72h</span>
+                </div>
+              </div>
+              <div class="form-shell">
+                <form id="leadForm" novalidate>
+                  <div class="field" id="fieldNome">
+                    <label for="nome">Nome completo</label>
+                    <input id="nome" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name" required />
+                    <span class="error-message" id="errorNome"></span>
+                  </div>
+
+                  <div class="field" id="fieldEmail">
+                    <label for="email">E-mail</label>
+                    <input id="email" name="email" type="email" placeholder="voce@email.com" autocomplete="email" required />
+                    <span class="error-message" id="errorEmail"></span>
+                  </div>
+
+                  <div class="field" id="fieldWhatsapp">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input id="whatsapp" name="whatsapp" type="tel" placeholder="(00) 00000-0000" inputmode="numeric" autocomplete="tel" required />
+                    <span class="error-message" id="errorWhatsapp"></span>
+                  </div>
+
+                  <div class="field" id="fieldOrigem">
+                    <label for="origem">Como você ficou sabendo?</label>
+                    <select id="origem" name="origem">
+                      <option value="Instagram">Instagram</option>
+                      <option value="WhatsApp">WhatsApp</option>
+                      <option value="Indicação">Indicação</option>
+                      <option value="YouTube">YouTube</option>
+                      <option value="Outro">Outro</option>
+                    </select>
+                    <span class="error-message" id="errorOrigem"></span>
+                  </div>
+
+                  <div class="field" id="fieldConsent">
+                    <div class="checkbox-wrap">
+                      <input id="consentimento" name="consentimento" type="checkbox" required />
+                      <label class="checkbox" for="consentimento">Concordo em receber mensagens sobre o VC Programador</label>
+                    </div>
+                    <span class="error-message" id="errorConsent"></span>
+                  </div>
+
+                  <button class="submit-btn" type="submit">QUERO RECEBER ATENDIMENTO →</button>
+                </form>
+
+                <div class="success-card" id="successCard" role="status" aria-live="polite">
+                  <div class="success-icon" aria-hidden="true">🚀</div>
+                  <div>
+                    <h3>Recebemos seu cadastro!</h3>
+                    <p>Seu WhatsApp será aberto agora para continuar o atendimento. Se não abrir, use o botão abaixo.</p>
+                    <a id="successWhatsappCta" class="cta-secondary" href="https://wa.me/5585998195457" target="_blank" rel="noopener noreferrer">Continuar no WhatsApp</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =======================
+         FOOTER
+    ======================== -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="./Logo Domínio Digital.jpg" alt="Símbolo Domínio Digital" />
+          <div class="footer-brand-copy">
+            <small>Produto do Domínio Digital</small>
+            <strong>VC Programador</strong>
+            <p class="muted">Formação prática para alunos de TI.</p>
+            <p class="muted">© <span id="currentYear"></span> VC Programador. Todos os direitos reservados.</p>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a id="footerWhatsappCta" href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" data-source="rodape">WhatsApp</a>
+          <a href="#topo">Política de Privacidade</a>
+        </div>
+      </div>
+    </footer>
+
+    <a
+      class="whatsapp-float"
+      data-source="botao-flutuante"
+      href="https://wa.me/5500000000000"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Falar no WhatsApp"
+    >
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20.52 3.48A11.84 11.84 0 0 0 12.06 0C5.53 0 .21 5.32.21 11.85C.21 13.93.76 15.96 1.82 17.76L0 24L6.4 22.22C8.12 23.16 10.06 23.66 12.04 23.66H12.05C18.58 23.66 23.9 18.34 23.9 11.81C23.9 8.64 22.67 5.66 20.52 3.48ZM12.05 21.67H12.04C10.3 21.67 8.6 21.2 7.12 20.31L6.75 20.09L2.95 21.15L4.05 17.46L3.81 17.08C2.82 15.51 2.3 13.69 2.3 11.84C2.3 6.47 6.68 2.09 12.06 2.09C14.65 2.09 17.08 3.1 18.91 4.94C20.75 6.77 21.76 9.21 21.76 11.8C21.76 17.18 17.42 21.67 12.05 21.67ZM17.49 14.28C17.2 14.13 15.76 13.42 15.49 13.32C15.22 13.22 15.02 13.17 14.82 13.47C14.62 13.76 14.03 14.47 13.86 14.67C13.69 14.86 13.52 14.89 13.23 14.75C11.5 13.88 10.37 13.19 9.18 11.15C8.86 10.59 9.5 10.63 10.09 9.45C10.18 9.25 10.14 9.08 10.06 8.93C9.99 8.78 9.41 7.34 9.17 6.77C8.94 6.22 8.71 6.3 8.54 6.29C8.38 6.28 8.19 6.28 8 6.28C7.8 6.28 7.48 6.36 7.22 6.64C6.95 6.93 6.22 7.61 6.22 8.99C6.22 10.37 7.25 11.7 7.39 11.89C7.53 12.08 9.33 14.86 12.06 16.04C13.79 16.79 14.47 16.85 15.01 16.77C15.84 16.64 17.2 16.09 17.56 15.09C17.92 14.09 17.92 13.25 17.81 13.08C17.71 12.91 17.78 12.94 17.49 14.28Z" fill="currentColor"/>
+      </svg>
+      <span class="sr-only">WhatsApp</span>
+    </a>
+
+    <script>
+      /* =======================
+         CONFIGURACAO RAPIDA
+      ======================== */
+      const CHECKOUT_URL = "https://loja.infinitepay.io/stephanybandeira/ndk4802-vc-programador";
+      const WEBHOOK_URL = "COLE_SEU_WEBHOOK_AQUI";
+      const SHOW_COUNTDOWN = false;
+      const COUNTDOWN_HOURS = 72;
+      const WHATSAPP_LINK = "https://wa.me/5585998195457";
+      const WHATSAPP_SALES_MESSAGE = "Quero tirar dúvidas sobre a Turma Fundadora.";
+      const INSTAGRAM_LINK = "https://instagram.com/";
+      const PRIVACY_LINK = "#topo";
+
+      /* =======================
+         ELEMENTOS GERAIS
+      ======================== */
+      const header = document.querySelector(".site-header");
+      const navToggle = document.getElementById("navToggle");
+      const navPanel = document.getElementById("navPanel");
+      const currentYear = document.getElementById("currentYear");
+      const countdownBox = document.getElementById("countdownBox");
+      const countdownTime = document.getElementById("countdownTime");
+      const form = document.getElementById("leadForm");
+      const successCard = document.getElementById("successCard");
+      const successWhatsappCta = document.getElementById("successWhatsappCta");
+      const whatsappInput = document.getElementById("whatsapp");
+      const nameInput = document.getElementById("nome");
+      const footerLinks = document.querySelectorAll('.footer-links a');
+      const whatsappFloat = document.querySelector(".whatsapp-float");
+      const buyLinks = [
+        document.getElementById("navBuyCta"),
+        document.getElementById("navBuyCtaMobile"),
+        document.getElementById("heroBuyCta"),
+        document.getElementById("offerBuyCta")
+      ];
+      const whatsappLinks = [
+        document.getElementById("offerWhatsappCta"),
+        document.getElementById("footerWhatsappCta"),
+        whatsappFloat
+      ];
+
+      currentYear.textContent = new Date().getFullYear();
+
+      const buildWhatsAppHref = (sourceLabel, leadData = null) => {
+        const currentName = nameInput?.value.trim();
+        const currentEmail = document.getElementById("email")?.value.trim();
+        const currentWhatsapp = whatsappInput?.value.trim();
+        const currentOrigem = document.getElementById("origem")?.value;
+        const data = {
+          nome: leadData?.nome || currentName,
+          email: leadData?.email || currentEmail,
+          whatsapp: leadData?.whatsapp || currentWhatsapp,
+          origemCadastro: leadData?.origem || currentOrigem
+        };
+        const originMap = {
+          hero: "seção principal da página",
+          oferta: "seção de oferta",
+          rodape: "rodapé",
+          "botao-flutuante": "botão flutuante do WhatsApp",
+          formulario: "formulário de inscrição"
+        };
+        const origin = originMap[sourceLabel] || sourceLabel || "landing page";
+        const intro = data.nome
+          ? `Olá! Meu nome é ${data.nome} e vim da ${origin} do VC Programador.`
+          : `Olá! Vim da ${origin} do VC Programador.`;
+        const details = [
+          data.email ? `E-mail: ${data.email}` : "",
+          data.whatsapp ? `WhatsApp: ${data.whatsapp}` : "",
+          data.origemCadastro ? `Como conheci: ${data.origemCadastro}` : ""
+        ].filter(Boolean);
+        const text = details.length
+          ? `${intro} ${WHATSAPP_SALES_MESSAGE}\n\nDados preenchidos:\n${details.join("\n")}`
+          : `${intro} ${WHATSAPP_SALES_MESSAGE}`;
+        return `${WHATSAPP_LINK}?text=${encodeURIComponent(text)}`;
+      };
+
+      whatsappFloat.href = buildWhatsAppHref(whatsappFloat.dataset.source);
+      footerLinks[0].href = INSTAGRAM_LINK;
+      footerLinks[1].href = buildWhatsAppHref("rodape");
+      footerLinks[2].href = PRIVACY_LINK;
+
+      buyLinks.forEach((link) => {
+        if (!link) return;
+        link.href = CHECKOUT_URL;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      });
+
+      whatsappLinks.forEach((link) => {
+        if (!link) return;
+        const updateHref = () => {
+          link.href = buildWhatsAppHref(link.dataset.source);
+        };
+        updateHref();
+        link.addEventListener("click", updateHref);
+      });
+
+      /* =======================
+         HEADER COM SCROLL
+      ======================== */
+      const handleHeaderScroll = () => {
+        header.classList.toggle("scrolled", window.scrollY > 80);
+      };
+
+      window.addEventListener("scroll", handleHeaderScroll, { passive: true });
+      handleHeaderScroll();
+
+      /* =======================
+         MENU MOBILE
+      ======================== */
+      if (navToggle) {
+        navToggle.addEventListener("click", () => {
+          const isOpen = navPanel.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+          document.body.classList.toggle("menu-open", isOpen);
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const targetId = link.getAttribute("href");
+          if (!targetId || targetId === "#") return;
+          const target = document.querySelector(targetId);
+          if (!target) return;
+
+          event.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 68;
+          window.scrollTo({ top, behavior: "smooth" });
+
+          navPanel.classList.remove("open");
+          document.body.classList.remove("menu-open");
+          navToggle?.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      /* =======================
+         FADE-IN
+      ======================== */
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      document.querySelectorAll(".fade-in").forEach((element) => revealObserver.observe(element));
+
+      /* =======================
+         COUNTERS
+      ======================== */
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = Number(el.dataset.counter || 0);
+            let current = 0;
+            const duration = 1000;
+            const stepTime = Math.max(40, Math.floor(duration / Math.max(target, 1)));
+
+            const timer = setInterval(() => {
+              current += 1;
+              el.textContent = String(current);
+              if (current >= target) {
+                clearInterval(timer);
+              }
+            }, stepTime);
+
+            counterObserver.unobserve(el);
+          });
+        },
+        { threshold: 0.6 }
+      );
+
+      document.querySelectorAll("[data-counter]").forEach((counter) => counterObserver.observe(counter));
+
+      /* =======================
+         ACCORDION
+      ======================== */
+      const accordionItems = document.querySelectorAll(".accordion-item");
+
+      accordionItems.forEach((item) => {
+        const trigger = item.querySelector(".accordion-trigger");
+        const panel = item.querySelector(".accordion-panel");
+
+        trigger.addEventListener("click", () => {
+          const isOpen = item.classList.contains("open");
+
+          accordionItems.forEach((otherItem) => {
+            const otherPanel = otherItem.querySelector(".accordion-panel");
+            const otherTrigger = otherItem.querySelector(".accordion-trigger");
+            otherItem.classList.remove("open");
+            otherTrigger.setAttribute("aria-expanded", "false");
+            otherPanel.style.maxHeight = "0px";
+          });
+
+          if (!isOpen) {
+            item.classList.add("open");
+            trigger.setAttribute("aria-expanded", "true");
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          }
+        });
+      });
+
+      /* =======================
+         COUNTDOWN OPCIONAL
+      ======================== */
+      if (SHOW_COUNTDOWN) {
+        countdownBox.classList.add("active");
+        const targetTime = Date.now() + COUNTDOWN_HOURS * 60 * 60 * 1000;
+
+        const renderCountdown = () => {
+          const diff = Math.max(targetTime - Date.now(), 0);
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          countdownTime.innerHTML = `
+            <span>${String(hours).padStart(2, "0")}h</span>
+            <span>${String(minutes).padStart(2, "0")}m</span>
+            <span>${String(seconds).padStart(2, "0")}s</span>
+          `;
+        };
+
+        renderCountdown();
+        setInterval(renderCountdown, 1000);
+      }
+
+      /* =======================
+         VALIDACAO FORM
+      ======================== */
+      const fields = {
+        nome: {
+          input: document.getElementById("nome"),
+          field: document.getElementById("fieldNome"),
+          error: document.getElementById("errorNome"),
+          validate(value) {
+            return value.trim().length >= 3 ? "" : "Informe seu nome completo com pelo menos 3 caracteres.";
+          }
+        },
+        email: {
+          input: document.getElementById("email"),
+          field: document.getElementById("fieldEmail"),
+          error: document.getElementById("errorEmail"),
+          validate(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()) ? "" : "Digite um e-mail válido.";
+          }
+        },
+        whatsapp: {
+          input: whatsappInput,
+          field: document.getElementById("fieldWhatsapp"),
+          error: document.getElementById("errorWhatsapp"),
+          validate(value) {
+            const digits = value.replace(/\D/g, "");
+            return digits.length >= 10 ? "" : "Digite um WhatsApp com DDD válido.";
+          }
+        },
+        consentimento: {
+          input: document.getElementById("consentimento"),
+          field: document.getElementById("fieldConsent"),
+          error: document.getElementById("errorConsent"),
+          validate(value, input) {
+            return input.checked ? "" : "Você precisa concordar para receber as mensagens.";
+          }
+        }
+      };
+
+      const setFieldState = (config, message) => {
+        config.field.classList.toggle("invalid", Boolean(message));
+        config.error.textContent = message;
+      };
+
+      const validateField = (key) => {
+        const config = fields[key];
+        const message = config.validate(config.input.type === "checkbox" ? config.input.checked : config.input.value, config.input);
+        setFieldState(config, message);
+        return !message;
+      };
+
+      Object.keys(fields).forEach((key) => {
+        const config = fields[key];
+        const eventName = config.input.type === "checkbox" ? "change" : "input";
+        config.input.addEventListener(eventName, () => validateField(key));
+        if (config.input.type !== "checkbox") {
+          config.input.addEventListener("blur", () => validateField(key));
+        }
+      });
+
+      /* =======================
+         MASCARA WHATSAPP
+      ======================== */
+      const formatWhatsapp = (value) => {
+        const digits = value.replace(/\D/g, "").slice(0, 11);
+        if (digits.length <= 2) return digits.replace(/(\d{0,2})/, "($1");
+        if (digits.length <= 7) return digits.replace(/(\d{2})(\d+)/, "($1) $2");
+        if (digits.length <= 10) return digits.replace(/(\d{2})(\d{4})(\d+)/, "($1) $2-$3");
+        return digits.replace(/(\d{2})(\d{5})(\d+)/, "($1) $2-$3");
+      };
+
+      whatsappInput.addEventListener("input", (event) => {
+        event.target.value = formatWhatsapp(event.target.value);
+        validateField("whatsapp");
+      });
+
+      /* =======================
+         SUBMISSAO
+      ======================== */
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const isValid = ["nome", "email", "whatsapp", "consentimento"].every(validateField);
+        if (!isValid) return;
+
+        const payload = {
+          nome: fields.nome.input.value.trim(),
+          email: fields.email.input.value.trim(),
+          whatsapp: fields.whatsapp.input.value.trim(),
+          origem: document.getElementById("origem").value,
+          timestamp: new Date().toISOString()
+        };
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.style.opacity = "0.75";
+        submitButton.textContent = "Enviando...";
+
+        try {
+          if (WEBHOOK_URL && WEBHOOK_URL !== "COLE_SEU_WEBHOOK_AQUI") {
+            await fetch(WEBHOOK_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(payload)
+            });
+          }
+        } catch (error) {
+          console.error("Falha ao enviar para o webhook:", error);
+        } finally {
+          const formWhatsappHref = buildWhatsAppHref("formulario", payload);
+          form.style.display = "none";
+          successCard.classList.add("show");
+          successWhatsappCta.href = formWhatsappHref;
+          window.location.href = formWhatsappHref;
+          submitButton.disabled = false;
+          submitButton.style.opacity = "1";
+          submitButton.textContent = "QUERO RECEBER ATENDIMENTO →";
+        }
+      });
+    </script>
+  </body>
+</html>
